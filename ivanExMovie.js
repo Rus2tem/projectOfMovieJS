@@ -7,12 +7,25 @@ const personalMovieDB = {
     privat: false
 };
 
-const question1 = prompt('Один из последних просмотренных фильмов?', ''),
-    question2 = +prompt('Насколько оцените его?(по 10 балльной шкале)', ''),
-    question3 = prompt('Один из последних просмотренных фильмов?', ''),
-    question4 = +prompt('Насколько оцените его?(по 10 балльной шкале)', '');
+if (personalMovieDB.count < 10) {
+    alert('Просмотренно мало фильмов');
+} else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
+    alert('Вы просмотрели много фильмов');
+} else if (personalMovieDB.count >= 30) {
+    alert('Вы киноман');
+} else {
+    alert('Произошла ошибка');
+}
 
-personalMovieDB.movies[question1] = question2;
-personalMovieDB.movies[question3] = question4;
-
+for (let i = 0; i < 3; i++) {
+    const n = prompt('Один из последних просмотренных фильмов?', ''),
+        m = prompt('Насколько оцените его?(по 10 балльной шкале)', '');
+    if (n != '' && m != '' && n != null && m != null && n.length < 50) {
+        personalMovieDB.movies[n] = m;
+        console.log('true');
+    } else {
+        alert('Ошибка ввода, попробуйте снова');
+        i--;
+    }
+}
 console.log(personalMovieDB);
